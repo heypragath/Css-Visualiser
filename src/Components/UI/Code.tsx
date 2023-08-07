@@ -27,10 +27,12 @@ const Code = ({ children }) => {
             </div>
             <SyntaxHighlighter language="css" style={atomOneDark} customStyle={{
                 background: '#0a0118',
-                maxWidth: 'max-content',
+                width: `min(15rem + 10vw, 600px)`,
                 maxHeight: 'min-content',
                 paddingRight: `min(0.7rem + 1vw, 2rem)`,
                 fontSize: `min(0.7rem + 1vw, 1rem)`,
+                wordWrap: "break-word",
+                whiteSpace: "pre-wrap"
             }} >
                 {children}
             </SyntaxHighlighter>

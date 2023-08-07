@@ -3,8 +3,11 @@ import React from 'react'
 function ControlElementUI({ children }: { children: React.ReactNode }) {
     return (
         <div>
-            <h3 className='pb-2 mb-5 border-b-[1px] step-1'>PlayGround</h3>
-            {children}
+            <h3 className=' border-b-[1px] pb-2 step-1'>PlayGround</h3>
+            <div className='pt-4'>
+
+                {children}
+            </div>
         </div>
     )
 }

@@ -1,24 +1,24 @@
 import { useReducer } from 'react'
-import Layout from './UI/Layout/MasterLayout'
-import ContinuousSlider from './UI/Logical/ContinousSlider'
-import Info from './UI/Info'
-import Code from './UI/Code'
-import ControlElementUI from './UI/Layout/ControlElementUI'
+import Layout from '../Components/Layout/MasterLayout'
+import ContinuousSlider from '../Components/Logical/ContinousSlider'
+import Info from '../Components/UI/Info'
+import Code from '../Components/UI/Code'
+import ControlElementUI from '../Components/Layout/ControlElementUI'
 
 function Radius() {
 
   const InitialState = {
-    paddingTopLeft: 0,
-    paddingTopRight: 0,
-    paddingBottomRight: 0,
-    paddingBottomLeft: 0,
+    paddingTopLeft: "0",
+    paddingTopRight: "0",
+    paddingBottomRight: "0",
+    paddingBottomLeft: "0",
   }
 
   type stateTypes = typeof InitialState
 
   type actionTypes = {
     type: string,
-    payload: number
+    payload: string
   }
 
   const reducer = (state: stateTypes, action: actionTypes) => {
@@ -36,29 +36,30 @@ function Radius() {
     }
   }
 
+
   const [state, dispatch] = useReducer(reducer, InitialState)
 
 
   const props = [
     {
-      name: "PaddingTopLeft",
+      name: "Padding Top-Left",
       value: state.paddingTopLeft,
-      setValue: (value: number) => dispatch({ type: "paddingTopLeft", payload: value })
+      setValue: ({ type, payload }) => dispatch({ type: "paddingTopLeft", payload: payload })
     },
     {
-      name: "PaddingTopRight",
+      name: "Padding Top-Right",
       value: state.paddingTopRight,
-      setValue: (value: number) => dispatch({ type: "paddingTopRight", payload: value })
+      setValue: ({ type, payload }) => dispatch({ type: "paddingTopRight", payload: payload })
     },
     {
-      name: "PaddingBottomRight",
+      name: "Padding Bottom-Right",
       value: state.paddingBottomRight,
-      setValue: (value: number) => dispatch({ type: "paddingBottomRight", payload: value })
+      setValue: ({ type, payload }) => dispatch({ type: "paddingBottomRight", payload: payload })
     },
     {
-      name: "PaddingBottomLeft",
+      name: "Padding Bottom-Left",
       value: state.paddingBottomLeft,
-      setValue: (value: number) => dispatch({ type: "paddingBottomLeft", payload: value })
+      setValue: ({ type, payload }) => dispatch({ type: "paddingBottomLeft", payload: payload })
     },
   ]
 
@@ -71,7 +72,7 @@ function Radius() {
   return (
     <Layout>
       <Info info='Border Radius Property of CSS'>
-      This CSS property sets the rounded borders and provides the rounded corners around an element, tags, or div. It defines the radius of the corners of an element.
+        This CSS property sets the rounded borders and provides the rounded corners around an element, tags, or div. It defines the radius of the corners of an element.
       </Info>
       <div>
         <Code>

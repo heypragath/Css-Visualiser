@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import SwitchLabel from './UI/Logical/Switch'
-import Layout from './UI/Layout/MasterLayout';
-import Info from './UI/Info';
-import Code from './UI/Code';
-import ControlElementUI from './UI/Layout/ControlElementUI';
+import SwitchLabel from '../Components/Logical/Switch'
+import Layout from '../Components/Layout/MasterLayout';
+import Info from '../Components/UI/Info';
+import Code from '../Components/UI/Code';
+import ControlElementUI from '../Components/Layout/ControlElementUI';
 
 function Flex() {
   const [JustifyContent, SetJustifyContent] = useState(false)

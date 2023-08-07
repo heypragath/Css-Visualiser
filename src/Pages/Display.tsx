@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import Layout from './UI/Layout/MasterLayout'
-import Info from './UI/Info'
-import Code from './UI/Code'
-import ControlElementUI from './UI/Layout/ControlElementUI'
-import SwitchLabel from './UI/Logical/Switch'
+import Layout from '../Components/Layout/MasterLayout'
+import Info from '../Components/UI/Info'
+import Code from '../Components/UI/Code'
+import ControlElementUI from '../Components/Layout/ControlElementUI'
+import SwitchLabel from '../Components/Logical/Switch'
 
 function Display() {
     const [Block, setBlock] = useState(true)

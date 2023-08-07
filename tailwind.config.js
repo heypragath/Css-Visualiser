@@ -6,6 +6,12 @@ export default {
   ],
   theme: {
     extend: {
+      margin: {
+        "margin-clamp": "clamp(1.13rem, calc(0.65rem + 2.39vw), 2.50rem)"
+      },
+      padding: {
+        "padding-clamp": "clamp(1.13rem, calc(0.65rem + 2.39vw), 2.50rem)"
+      }
     },
   },
   plugins: [],
