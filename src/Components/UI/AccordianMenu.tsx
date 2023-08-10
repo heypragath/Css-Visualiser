@@ -12,8 +12,6 @@ const style = {
 
 function AccordianMenu({ menu }: { menu: MenuTypes[] }) {
 
-    console.log(menu)
-
     return (
         <List sx={style} component="nav" aria-label="mailbox folders">
             {menu?.map((menu) => {

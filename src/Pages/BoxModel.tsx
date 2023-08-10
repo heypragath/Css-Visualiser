@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import ContinuousSlider from '../Components/Logical/ContinousSlider'
-import Info from '../Components/UI/Info'
+import Info from '../Components/Layout/Info'
 import Layout from '../Components/Layout/MasterLayout'
 import Code from '../Components/UI/Code'
 import ControlElementUI from '../Components/Layout/ControlElementUI'

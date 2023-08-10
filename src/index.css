@@ -69,7 +69,7 @@ body {
 }
 
 .px {
-  padding-inline: min(2vw, 2rem);
+  padding-inline: min(1.5vw, 2rem);
 }
 
 .header-width {
@@ -125,4 +125,29 @@ input:focus {
 
 .MuiSelect-icon {
   color: rgb(109, 40, 217) !important;
+}
+
+.css-d9c359-MuiButtonBase-root-MuiToggleButton-root {
+ text-align: start!important;
+ text-transform: none!important;
+ color: inherit;
+ padding: 0!important;
+ margin: 0 3rem;
+}
+.css-d9c359-MuiButtonBase-root-MuiToggleButton-root:focus{
+  outline: 2px solid red;
+}
+
+.MuiToggleButtonGroup-root {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.MuiTab-textColorPrimary { 
+  color: white !important;
+} 
+
+.css-i4bv87-MuiSvgIcon-root{
+  color: white !important;
 }

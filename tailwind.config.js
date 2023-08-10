@@ -11,6 +11,9 @@ export default {
       },
       padding: {
         "padding-clamp": "clamp(1.13rem, calc(0.65rem + 2.39vw), 2.50rem)"
+      },
+      width:{
+        "wrapper-code-width": "max(320px, 50%)"
       }
     },
   },

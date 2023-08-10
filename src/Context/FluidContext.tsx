@@ -6,10 +6,10 @@ const InitialState = {
     initialState: "16",
     IdealState: "25",
     multiplier: "2",
-    FinalState: "72",
+    FinalState: "5",
     InitialUnit: "px",
     IdealUnit: "px",
-    FinalUnit: "px",
+    FinalUnit: "rem",
     multiplierUnit: "vw",
     CalcWidth: "0"
 
@@ -32,11 +32,11 @@ const FluidReducer = (state: FluidTypes, action: actions): FluidTypes => {
             return { ...state, IdealState: action.payload }
         case Values.setFinalValue:
             return { ...state, FinalState: action.payload }
-        case Values.setUnit:
+        case Values.setInitialUnit:
             return { ...state, InitialUnit: action.payload }
-        case Values.setUnit2:
+        case Values.setIdealUnit:
             return { ...state, IdealUnit: action.payload }
-        case Values.setUnit3:
+        case Values.setFinalUnit:
             return { ...state, FinalUnit: action.payload }
         case Values.multiplier:
             return { ...state, multiplier: action.payload }
@@ -65,8 +65,6 @@ export const CreateFluidContext = createContext<InitialContextStateTypes>(Initia
 function FluidContext({ children }: { children: React.ReactNode }) {
     const [state, dispatch] = useReducer(FluidReducer, InitialState)
 
-
-    console.log(state.InitialUnit)
     useEffect(() => {
         if (state.InitialUnit === "rem") {
             dispatch({ type: Values.setInitialValue, payload: "1" })
@@ -76,7 +74,7 @@ function FluidContext({ children }: { children: React.ReactNode }) {
             dispatch({ type: Values.setIdealValue, payload: "1" })
         }
         if (state.FinalUnit == "rem") {
-            dispatch({ type: Values.setFinalValue, payload: "1" })
+            dispatch({ type: Values.setFinalValue, payload: "5" })
         }
 
 

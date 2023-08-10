@@ -4,8 +4,8 @@ export interface SliderTypes {
     value: string,
     name: string,
     setValue: React.Dispatch<actions>,
-    setUnit?: React.Dispatch<actions>
-    unit?: string
+    setUnit?: React.Dispatch<actions>,
+    unit?: string,
 }
 
 export type actions = {
@@ -24,9 +24,9 @@ export enum Values {
     setInitialValue = "SetInitialValue",
     setIdealValue = "SetIdealValue",
     setFinalValue = "SetFinalValue",
-    setUnit = "setUnit",
-    setUnit2 = "setUnit2",
-    setUnit3 = "setUnit3",
+    setInitialUnit = "setUnit",
+    setIdealUnit = "setUnit2",
+    setFinalUnit = "setUnit3",
     multiplier = "multiplier",
     Setmultiplier = "Setmultiplier",
     calcWidth = "calcWidth"

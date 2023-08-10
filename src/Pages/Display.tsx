@@ -1,62 +1,46 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Layout from '../Components/Layout/MasterLayout'
-import Info from '../Components/UI/Info'
+import Info from '../Components/Layout/Info'
 import Code from '../Components/UI/Code'
 import ControlElementUI from '../Components/Layout/ControlElementUI'
-import SwitchLabel from '../Components/Logical/Switch'
+import BasicTabs from '../Components/Logical/Tabs'
 
 function Display() {
-    const [Block, setBlock] = useState(true)
-    const [InlineBlock, setInlineBlock] = useState(false)
-    const [Inline, setInline] = useState(false)
-    const [Hidden, setHidden] = useState(false)
 
-    const DisplayData = [
-        {
-            name: 'Block',
-            state: Block,
-            setState: setBlock
-        },
-        {
-            name: 'Inline-Block',
-            state: InlineBlock,
-            setState: setInlineBlock
-        },
-        {
-            name: 'Inline',
-            state: Inline,
-            setState: setInline
-        },
-        {
-            name: 'Hidden',
-            state: Hidden,
-            setState: setHidden
-        },
-    ]
+    const [Property, setProperty] = useState(0)
 
+    function Properties() {
+
+        if (Property === 2) {
+            return "Inline"
+        }
+        if (Property === 0) {
+            return "Block"
+        }
+        if (Property === 1) {
+            return "Inline-block"
+        }
+        if (Property === 3) {
+            return "Hidden"
+        }
+    }
 
     const codestring = `
     .class{
-        border-radius: ;
+        display ${Properties()};
     }
     `
     return (
         <Layout>
-            <Info info='Display Property Of CSS'>
-                The display property specifies the display behavior (the type of rendering box) of an element.
+            <Info info='Display Properties Of CSS'>
             </Info>
             <Code>
                 {codestring}
             </Code>
             <ControlElementUI>
-                <SwitchLabel data={DisplayData} />
+                <BasicTabs setProperty={setProperty} />
             </ControlElementUI>
-            <div className={`h-[20vh] bg my-4 `}>
-                <div className={`p-3  bg-violet-900 rounded-2xl ${Block && "block"}
-                ${InlineBlock && "inline-block"} ${Inline && "inline"}`}>
-                    content
-                </div>
-            </div>
+
         </Layout>
     )
 }

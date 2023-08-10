@@ -41,7 +41,7 @@ function TestBox({ children, AddClass }: { children: React.ReactNode, AddClass?:
 
 
     return (
-        <div ref={ref} className={`bg min-w-min flex justify-center items-center max-w-7xl my-margin-clamp ${AddClass} `}>
+        <div ref={ref} className={`bg min-w-min justify-center items-center max-w-7xl my-margin-clamp ${AddClass} `}>
             {children}
         </div>
     )

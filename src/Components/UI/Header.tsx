@@ -1,28 +1,28 @@
 import { Link } from "react-router-dom";
 import MenuDrawer from "./Drawer";
-import Accordian from "../Layout/Accordian";
+import Accordian from "./Accordian";
 
 export interface MenuTypes {
   title: string,
   link: string
 }
+export const menu: MenuTypes[] = [
+  {
+    title: "Clamp",
+    link: "/clamp"
+  },
+  {
+    title: "Min",
+    link: "/min"
+
+  },
+  {
+    title: "Max",
+    link: "/max"
+  },
+]
 function Header() {
 
-  const menu: MenuTypes[] = [
-    {
-      title: "Clamp",
-      link: "/clamp"
-    },
-    {
-      title: "Min",
-      link: "/min"
-
-    },
-    {
-      title: "Max",
-      link: "/max"
-    },
-  ]
 
   return (
     <>
@@ -36,8 +36,9 @@ function Header() {
           <Link to="/flex"><p>flex</p></Link>
           <Link to="/border-radius"><p>Border Radius</p></Link>
           <Link to="/display-property"><p>Display Property</p></Link>
+          <Link to="/ultimate-units"><p>Units</p></Link>
         </div>
-        <div>
+        <div className="max-md:hidden">
           <Accordian menu={menu} />
         </div>
       </header>

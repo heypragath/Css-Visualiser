@@ -1,52 +1,54 @@
 import React, { useContext, useState } from 'react'
 import MasterLayout from '../Components/Layout/MasterLayout'
-import Info from '../Components/UI/Info'
+import Info from '../Components/Layout/Info'
 import Code from '../Components/UI/Code'
 import ControlElementUI from '../Components/Layout/ControlElementUI'
 import ContinuousSlider from '../Components/Logical/ContinousSlider'
 import { SliderTypes, Values } from '../Types/Types'
 import { CreateFluidContext } from '../Context/FluidContext'
+import TestBox from '../Components/Layout/TestBox'
 
 function Min() {
 
-  const codeString = `
-    .class{
-      width: min(34px, 45px)
-    }
-  `
-  const [initial, useInitial] = useState<string>("0")
-  const [Multiplier, useMultiplier] = useState<string>("0")
-  const [Ideal, useIdeal] = useState<string>("0")
+  const [Max, useMax] = useState<string>("50")
+  const [Multiplier, useMultiplier] = useState<string>("30")
+  const [Base, useBase] = useState<string>("70")
 
   const { state, dispatch } = useContext<any>(CreateFluidContext)
 
-  const { initialState, IdealState, FinalState, Unit, Unit2, Unit3, multiplier, multiplierUnit } = state
+  const { FinalUnit, IdealUnit, multiplierUnit } = state
 
   const Options: SliderTypes[] = [
     {
-      value: initial,
-      name: "Initial Value",
-      setValue: ({ type, payload }) => useInitial(payload),
-      setUnit: ({ type, payload }) => dispatch!({ type: Values.setUnit, payload: payload }),
-      unit: Unit
-    },
-    {
-      value: Ideal,
-      name: "Final Value",
-      setValue: ({ type, payload }) => useIdeal(payload),
-      setUnit: ({ type, payload }) => dispatch!({ type: Values.setUnit2, payload: payload }),
-      unit: Unit2
+      value: Base,
+      name: "Base Value",
+      setValue: ({ type, payload }) => useBase(payload),
+      setUnit: ({ type, payload }) => dispatch!({ type: Values.setIdealUnit, payload: payload }),
+      unit: IdealUnit
     },
     {
       value: Multiplier,
       name: "Multiplier",
       setValue: ({ type, payload }) => useMultiplier(payload),
       setUnit: ({ type, payload }) => dispatch!({ type: Values.Setmultiplier, payload: payload }),
-
       unit: multiplierUnit
+    },
+    {
+      value: Max,
+      name: "Maximum Value",
+      setValue: ({ type, payload }) => useMax(payload),
+      setUnit: ({ type, payload }) => dispatch!({ type: Values.setFinalUnit, payload: payload }),
+      unit: FinalUnit
     }
   ]
 
+  console.log(FinalUnit)
+
+  const codeString = `
+    .class{
+     width:min(${Base}${IdealUnit} + ${Multiplier}${multiplierUnit}, ${Max}${FinalUnit})
+    }
+  `
   return (
     <MasterLayout>
       <div>
@@ -57,9 +59,16 @@ function Min() {
       <ControlElementUI>
         {Options.map(option => <ContinuousSlider props={option} />)}
       </ControlElementUI>
-      {/* <div ref={ref} className={`bg h-[20vh] min-w-max my-4 flex justify-center items-center resize-x overflow-auto max-w-7xl `}>
-        <p style={{ fontSize: `min(${initialState}${Unit}, ${IdealState}${Unit2} + ${(multiplier / 100) * ContainerUnit}px, ${FinalState}${Unit3})` }}>Sample Text</p>
-      </div> */}
+          {/* <p className='mt-6 text-lg text-center text-red-700 '>Kindly Leave The Element after Dragging it,to Get The Desired Changes </p> */}
+      <TestBox AddClass='h-[20vh] flex'>
+        <div className='overflow-auto resize-x bg-blue-950 h-[10vh] max-w-[800px] rounded-2xl grid place-items-center relative' style={{ width: `min( ${Base}${IdealUnit} + ${Multiplier}${multiplierUnit}, ${Max}${FinalUnit})`, minWidth: `${Base}${IdealUnit}` }}>
+          <p>Drag Me</p>
+          <p className='absolute text-2xl -rotate-45 bottom-2 right-4'> 👇</p>
+
+
+        </div>
+      </TestBox >
+
     </MasterLayout>
   )
 }

@@ -1,6 +1,6 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import MasterLayout from '../Components/Layout/MasterLayout'
-import Info from '../Components/UI/Info'
+import Info from '../Components/Layout/Info'
 import Code from '../Components/UI/Code'
 import ControlElementUI from '../Components/Layout/ControlElementUI'
 import { SliderTypes, Values } from '../Types/Types'
@@ -17,13 +17,25 @@ function Clamp() {
 
     const ContainerUnit = Number(CalcWidth)
 
+    useEffect(() => {
+        if (FinalUnit === "rem") {
+            dispatch({
+                type: Values.setFinalUnit,
+                payload: "rem"
+            })
+        }
+
+
+    }, [FinalState])
+
+
 
     const Options: SliderTypes[] = [
         {
             value: initialState,
             name: "Initial Value",
             setValue: ({ type, payload }): { value: string } => dispatch!({ type: Values.setInitialValue, payload: payload }),
-            setUnit: ({ type, payload }) => dispatch!({ type: Values.setUnit, payload: payload }),
+            setUnit: ({ type, payload }) => dispatch!({ type: Values.setInitialUnit, payload: payload }),
             unit: InitialUnit
         },
 
@@ -31,7 +43,7 @@ function Clamp() {
             value: IdealState,
             name: "Ideal Value",
             setValue: ({ type, payload }) => dispatch!({ type: Values.setIdealValue, payload: payload }),
-            setUnit: ({ type, payload }) => dispatch!({ type: Values.setUnit2, payload: payload }),
+            setUnit: ({ type, payload }) => dispatch!({ type: Values.setIdealUnit, payload: payload }),
             unit: IdealUnit
         },
 
@@ -40,8 +52,8 @@ function Clamp() {
         {
             value: FinalState,
             name: "Final Value",
-            setValue: ({ type, payload }) => dispatch!({ type: "SetFinalValue", payload: payload }),
-            setUnit: ({ type, payload }) => dispatch!({ type: Values.setUnit3, payload: payload }),
+            setValue: ({ type, payload }) => dispatch!({ type: Values.setFinalValue, payload: payload }),
+            setUnit: ({ type, payload }) => dispatch!({ type: Values.setFinalUnit, payload: payload }),
             unit: FinalUnit
         },
         {
@@ -57,7 +69,7 @@ function Clamp() {
 
     const codestring = `
  .class {              
-    clamp: clamp(${initialState}${InitialUnit}, ${IdealState}${IdealUnit} + ${multiplier}vw, ${FinalState}${FinalUnit}
+    clamp: clamp(${initialState}${InitialUnit}, ${IdealState}${IdealUnit} + ${multiplier}vw, ${FinalState}${FinalUnit})
 }
     `
 
@@ -65,7 +77,7 @@ function Clamp() {
 
         let inititalValue: number = Number(initialState)
         let IdealValue: number = Number(IdealState)
-        let state3: number = Number(FinalState)
+        let FinalValue: number = Number(FinalState)
         let apple: number
 
 
@@ -77,42 +89,41 @@ function Clamp() {
 
         }
         if (FinalUnit == "rem") {
-            state3 = FinalState * 16
+            FinalValue = FinalState * 16
         }
 
         apple = IdealValue + ((multiplier / 100) * ContainerUnit)
 
-        if (FinalState > apple && apple > inititalValue) {
+        if (FinalValue > apple && apple > inititalValue) {
             return apple
         }
 
-        if (FinalState < apple) {
-            return FinalState
+        if (FinalValue < apple) {
+            return FinalValue
         }
 
         if (apple < inititalValue) {
             return inititalValue
         }
-
-
-
     }
-
+    console.log(FinalState)
     return (
         <MasterLayout>
             <div>
                 <Info info='CSS Clamp'>
                 </Info>
-                <div className='flex justify-between'>
-                    <Code>{codestring}</Code>
-                    <div className='flex flex-col items-center justify-center gap-3 my-margin-clamp py-padding-clamp basis-1/2 '>
+                <div className='flex flex-wrap items-center justify-between'>
+                    <div className='basis-1/2'>
+                        <Code width='100'>{codestring}</Code>
+                    </div>
+                    <div className='flex flex-col items-center justify-center gap-3 my-margin-clamp py-padding-clamp basis-1/2 max-md:flex-1 '>
                         <div className='flex '>
-                            <p>WP: </p>
+                            <p>View-Port Width: </p>
                             <p>{Math.floor(ContainerUnit)}px</p>
                         </div>
                         <div className='flex gap-1 p-2'>
                             <p>Font-Size: </p>
-                            <p>{Calculation()}px</p>
+                            <p>{Math.floor(Calculation()?? 7)}px</p>
                         </div>
                     </div>
                 </div>
@@ -120,8 +131,10 @@ function Clamp() {
             <ControlElementUI>
                 {Options.map((props) => <ContinuousSlider props={props} />)}
             </ControlElementUI>
-            <TestBox AddClass='resize-x overflow-auto h-[20vh]'>
+            <p className='mt-6 text-lg text-center text-red-500 '>Kindly Leave The Parent after Dragging it,to Get The Desired Changes </p>
+            <TestBox AddClass='resize-x overflow-auto h-[20vh] flex relative'>
                 <p style={{ fontSize: `clamp(${initialState}${InitialUnit}, ${IdealState}${IdealUnit} + ${(multiplier / 100) * ContainerUnit}px, ${FinalState}${FinalUnit})` }}>Try Resizing The Container</p>
+                <p className='absolute text-2xl -rotate-45 bottom-2 right-4'> 👇</p>
             </TestBox>
         </MasterLayout>
     )
