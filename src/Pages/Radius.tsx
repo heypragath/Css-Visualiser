@@ -5,21 +5,23 @@ import Info from '../Components/Layout/Info'
 import Code from '../Components/UI/Code'
 import ControlElementUI from '../Components/Layout/ControlElementUI'
 
+
+export type actionTypes = {
+  type?: string,
+  payload: number
+}
+
 function Radius() {
 
   const InitialState = {
-    paddingTopLeft: "0",
-    paddingTopRight: "0",
-    paddingBottomRight: "0",
-    paddingBottomLeft: "0",
+    paddingTopLeft: 0,
+    paddingTopRight: 0,
+    paddingBottomRight: 0,
+    paddingBottomLeft: 0,
   }
 
   type stateTypes = typeof InitialState
 
-  type actionTypes = {
-    type: string,
-    payload: string
-  }
 
   const reducer = (state: stateTypes, action: actionTypes) => {
     switch (action.type) {
@@ -44,22 +46,22 @@ function Radius() {
     {
       name: "Padding Top-Left",
       value: state.paddingTopLeft,
-      setValue: ({ type, payload }) => dispatch({ type: "paddingTopLeft", payload: payload })
+      setValue: ({ payload }: actionTypes) => dispatch({ type: "paddingTopLeft", payload: payload })
     },
     {
       name: "Padding Top-Right",
       value: state.paddingTopRight,
-      setValue: ({ type, payload }) => dispatch({ type: "paddingTopRight", payload: payload })
+      setValue: ({ payload }: actionTypes) => dispatch({ type: "paddingTopRight", payload: payload })
     },
     {
       name: "Padding Bottom-Right",
       value: state.paddingBottomRight,
-      setValue: ({ type, payload }) => dispatch({ type: "paddingBottomRight", payload: payload })
+      setValue: ({ payload }: actionTypes) => dispatch({ type: "paddingBottomRight", payload: payload })
     },
     {
       name: "Padding Bottom-Left",
       value: state.paddingBottomLeft,
-      setValue: ({ type, payload }) => dispatch({ type: "paddingBottomLeft", payload: payload })
+      setValue: ({ payload }: actionTypes) => dispatch({ type: "paddingBottomLeft", payload: payload })
     },
   ]
 
@@ -85,7 +87,7 @@ function Radius() {
         })}
       </ControlElementUI>
       <div className='p-2 my-4 bg '>
-        <div className='p-10 bg-violet-900' style={{ borderRadius: `${state.paddingTopLeft}px ${state.paddingTopRight}px ${state.paddingBottomRight}px ${state.paddingBottomLeft}px` }}>
+        <div className='p-10 bg-violet-950' style={{ borderRadius: `${state.paddingTopLeft}px ${state.paddingTopRight}px ${state.paddingBottomRight}px ${state.paddingBottomLeft}px` }}>
           Content
         </div>
       </div>

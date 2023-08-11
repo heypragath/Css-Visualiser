@@ -8,24 +8,28 @@ function ContactMe() {
   interface DataType {
     name: string,
     icon: React.ReactNode,
-    address: string
+    address: string,
+    link: string
   }
 
   const Data: DataType[] = [
     {
       name: 'Email',
       icon: <EmailIcon />,
-      address: "HeyPragath@gmail.com"
+      address: "HeyPragath@gmail.com",
+      link: "mailto:HeyPragath@gmail.com"
     },
     {
       name: 'Twitter',
       icon: <TwitterIcon />,
-      address: "@PragathRao"
+      address: "@PragathRao",
+      link: "https://twitter.com/PragathRao"
     },
     {
       name: 'Linkedln',
       icon: <LinkedInIcon />,
-      address: "@PragathRao"
+      address: "@PragathRao",
+      link: "https://www.linkedin.com/in/pragath-is-ambitious/"
     },
   ]
 
@@ -35,11 +39,14 @@ function ContactMe() {
       <div className='grid py-3 mt-2 gap grid-auto'>
         {Data.map((item) => {
           return (
-            <div className="flex flex-col gap-0.5 p-5 box">
-              {item.icon}
-              <h3>{item.name}</h3>
-              <h4>{item.address}</h4>
-            </div>
+            <a target='blank' href={item.link}>
+
+              <div className="flex flex-col gap-0.5 p-5 box">
+                {item.icon}
+                <h3>{item.name}</h3>
+                <h4>{item.address}</h4>
+              </div>
+            </a>
 
           )
         })}

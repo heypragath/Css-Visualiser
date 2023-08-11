@@ -4,7 +4,7 @@ import { Values } from '../../Types/Types'
 
 function TestBox({ children, AddClass }: { children: React.ReactNode, AddClass?: string, }) {
 
-    let timeoutRef: number
+    let timeoutRef
 
     const { dispatch } = useContext(CreateFluidContext)
 
@@ -18,7 +18,7 @@ function TestBox({ children, AddClass }: { children: React.ReactNode, AddClass?:
             for (const entry of entries) {
                 if (entry.target === ref.current) {
                     console.log('Div width changed:', entry.contentRect.width);
-                    dispatch!({ type: Values.calcWidth, payload: entry.contentRect.width })
+                    dispatch!({ type: Values.calcWidth, payload: Math.floor(entry.contentRect.width) })
                 }
             }
         }, 100)

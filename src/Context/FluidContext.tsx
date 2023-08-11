@@ -1,28 +1,24 @@
 import React, { createContext, useEffect, useReducer } from 'react'
-import { InitialContextStateTypes, Values } from '../Types/Types'
+import { InitialContextStateTypes, Values, actions } from '../Types/Types'
 
 const InitialState = {
 
-    initialState: "16",
-    IdealState: "25",
-    multiplier: "2",
-    FinalState: "5",
+    initialState: 16,
+    IdealState: 25,
+    multiplier: 2,
+    FinalState: 5,
     InitialUnit: "px",
     IdealUnit: "px",
     FinalUnit: "rem",
     multiplierUnit: "vw",
-    CalcWidth: "0"
+    CalcWidth: 0
 
 }
 
 export type FluidTypes = typeof InitialState
 
 
-export type actions = {
-    type: string,
-    payload: string
 
-}
 
 const FluidReducer = (state: FluidTypes, action: actions): FluidTypes => {
     switch (action.type) {
@@ -57,8 +53,6 @@ const InitialContextState = {
 }
 
 
-
-
 export const CreateFluidContext = createContext<InitialContextStateTypes>(InitialContextState)
 
 
@@ -67,14 +61,14 @@ function FluidContext({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         if (state.InitialUnit === "rem") {
-            dispatch({ type: Values.setInitialValue, payload: "1" })
+            dispatch({ type: Values.setInitialValue, payload: 1 })
             console.log(state.initialState)
         }
         if (state.IdealUnit == "rem") {
-            dispatch({ type: Values.setIdealValue, payload: "1" })
+            dispatch({ type: Values.setIdealValue, payload: 1 })
         }
         if (state.FinalUnit == "rem") {
-            dispatch({ type: Values.setFinalValue, payload: "5" })
+            dispatch({ type: Values.setFinalValue, payload: 5 })
         }
 
 

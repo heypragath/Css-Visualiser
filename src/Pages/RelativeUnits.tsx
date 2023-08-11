@@ -4,23 +4,24 @@ import Info from '../Components/Layout/Info'
 import TestBox from '../Components/Layout/TestBox'
 import ControlElementUI from '../Components/Layout/ControlElementUI'
 import ContinuousSlider from '../Components/Logical/ContinousSlider'
+import { SliderTypes } from '../Types/Types'
 
 function RelativeUnits() {
 
-    const [Root, setRoot] = useState("16")
-    const [Parent, setParent] = useState("20")
+    const [Root, setRoot] = useState(16)
+    const [Parent, setParent] = useState(20)
 
-    const unitsArray = [
+    const unitsArray: SliderTypes[] = [
         {
             name: "Root Font Size",
             value: Root,
-            setValue: ({ type, payload }) => setRoot(payload),
+            setUseState: (payload) => setRoot(payload),
             unit: "px",
         },
         {
             name: "Parent Font Size",
             value: Parent,
-            setValue: ({ type, payload }) => setParent(payload),
+            setUseState: (payload) => setParent(payload),
             unit: "px",
         }
     ]
@@ -30,7 +31,6 @@ function RelativeUnits() {
     return (
         <MasterLayout>
             <Info info='Relative Units'>
-
             </Info>
             <ControlElementUI>
                 {unitsArray.map((prop) => <ContinuousSlider props={prop} />)}
@@ -40,8 +40,8 @@ function RelativeUnits() {
                 <div className='h-[20vh] w-11/12 mx-auto border-2 border-zinc-300 grid grid-cols-1 text-xl pb-5 '>
                     <p className='text-xl justify-self-end '>Parent Font Size : 20px </p>
                     <div className='flex flex-col gap-5 text-center'>
-                        <p style={{ fontSize: `${Number(Root) * 1.5}px` }}>Font Size: 1.5rem</p>
-                        <p style={{ fontSize: `${Number(Parent) * 1.5}px` }}>Font Size: 1.5em</p>
+                        <p style={{ fontSize: `${Number(Root) * 1.5}px` }}>Font Size: 1.5rem (1.5 * {Root})</p>
+                        <p style={{ fontSize: `${Number(Parent) * 1.5}px` }}>Font Size: 1.5em (1.5 * {Parent})</p>
                     </div>
                 </div>
             </TestBox>

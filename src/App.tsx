@@ -7,6 +7,7 @@ import Clamp from './Pages/Clamp'
 import Min from './Pages/Min'
 import Max from './Pages/Max'
 import Units from './Pages/RelativeUnits'
+import ViewPortUnits from './Pages/ViewPortUnits'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path='/min' element={<Min />} />
           <Route path='/max' element={<Max />} />
           <Route path='/ultimate-units' element={<Units />} />
+          <Route path='/viewport-units' element={<ViewPortUnits />} />
         </Routes>
       </BrowserRouter>
   )

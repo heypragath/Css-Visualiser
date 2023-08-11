@@ -63,7 +63,7 @@ export default function BasicTabs({ setProperty }) {
                 return (
                     <CustomTabPanel key={index} value={value} index={index}>
                         <div className={`h-[20vh] bg my-4 `}>
-                            <div className={`p-3  bg-violet-900 rounded-2xl block`}>
+                            <div className={`p-3 ${index === 0 && "block"} ${index === 1 && "inline-block"} bg-violet-900 rounded-2xl ${index === 2 && "inline"} ${index === 3 && "hidden"}`}>
                                 {val}
                             </div>
                         </div>

@@ -1,21 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import MasterLayout from '../Components/Layout/MasterLayout'
 import Info from '../Components/Layout/Info'
 import Code from '../Components/UI/Code'
 import ControlElementUI from '../Components/Layout/ControlElementUI'
-import { SliderTypes, Values } from '../Types/Types'
+import { SliderTypes, Values, actions } from '../Types/Types'
 import ContinuousSlider from '../Components/Logical/ContinousSlider'
 import { CreateFluidContext } from '../Context/FluidContext'
 import TestBox from '../Components/Layout/TestBox'
 
 function Clamp() {
 
-    const { state, dispatch } = useContext<any>(CreateFluidContext)
+    const { state, dispatch } = useContext(CreateFluidContext)
 
     const { initialState, IdealState, FinalState, InitialUnit, IdealUnit, FinalUnit, multiplier, multiplierUnit, CalcWidth } = state
 
 
-    const ContainerUnit = Number(CalcWidth)
+    const ContainerUnit = CalcWidth
 
     useEffect(() => {
         if (FinalUnit === "rem") {
@@ -33,35 +33,36 @@ function Clamp() {
     const Options: SliderTypes[] = [
         {
             value: initialState,
-            name: "Initial Value",
-            setValue: ({ type, payload }): { value: string } => dispatch!({ type: Values.setInitialValue, payload: payload }),
-            setUnit: ({ type, payload }) => dispatch!({ type: Values.setInitialUnit, payload: payload }),
+            name: "Minimum Value",
+            setValue: ({ payload }) => dispatch!({ type: Values.setInitialValue, payload: payload }),
+            setUnit: ({ payload }: actions) => dispatch!({ type: Values.setInitialUnit, payload: payload as string }),
             unit: InitialUnit
         },
 
         {
             value: IdealState,
             name: "Ideal Value",
-            setValue: ({ type, payload }) => dispatch!({ type: Values.setIdealValue, payload: payload }),
-            setUnit: ({ type, payload }) => dispatch!({ type: Values.setIdealUnit, payload: payload }),
+            setValue: ({ payload }) => dispatch!({ type: Values.setIdealValue, payload: payload }),
+            setUnit: ({ payload }) => dispatch!({ type: Values.setIdealUnit, payload: payload as string }),
             unit: IdealUnit
         },
 
 
-
-        {
-            value: FinalState,
-            name: "Final Value",
-            setValue: ({ type, payload }) => dispatch!({ type: Values.setFinalValue, payload: payload }),
-            setUnit: ({ type, payload }) => dispatch!({ type: Values.setFinalUnit, payload: payload }),
-            unit: FinalUnit
-        },
         {
             value: multiplier,
             name: "Responsive Multiplier",
-            setValue: ({ type, payload }) => dispatch!({ type: Values.multiplier, payload: payload }),
-            setUnit: ({ type, payload }) => dispatch!({ type: Values.Setmultiplier, payload: payload }),
-            unit: multiplierUnit
+            setValue: ({ payload }) => dispatch!({ type: Values.multiplier, payload: payload }),
+            setUnit: ({ payload }) => dispatch!({ type: Values.Setmultiplier, payload: payload as string }),
+            unit: multiplierUnit,
+            max: 3
+        },
+
+        {
+            value: FinalState,
+            name: "Maximum Value",
+            setValue: ({ payload }) => dispatch!({ type: Values.setFinalValue, payload: payload }),
+            setUnit: ({ payload }) => dispatch!({ type: Values.setFinalUnit, payload: payload as string }),
+            unit: FinalUnit
         },
 
     ]
@@ -123,7 +124,7 @@ function Clamp() {
                         </div>
                         <div className='flex gap-1 p-2'>
                             <p>Font-Size: </p>
-                            <p>{Math.floor(Calculation()?? 7)}px</p>
+                            <p>{Math.floor(Calculation() ?? 7)}px</p>
                         </div>
                     </div>
                 </div>

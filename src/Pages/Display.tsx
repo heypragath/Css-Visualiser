@@ -27,7 +27,7 @@ function Display() {
 
     const codestring = `
     .class{
-        display ${Properties()};
+        display: ${Properties()};
     }
     `
     return (
@@ -40,7 +40,6 @@ function Display() {
             <ControlElementUI>
                 <BasicTabs setProperty={setProperty} />
             </ControlElementUI>
-
         </Layout>
     )
 }

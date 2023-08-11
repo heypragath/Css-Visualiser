@@ -32,21 +32,21 @@ function CAD() {
     {
       title: "Flex",
       value: "left",
-      setState: SetPosition,
+      setUseState: SetPosition,
       code: code1,
       index: 1
     },
     {
       title: "Grid",
       value: "center",
-      setState: SetPosition,
+      setUseState: SetPosition,
       code: code2,
       index: 2
     },
     {
       title: "Inset",
       value: "right",
-      setState: SetPosition,
+      setUseState: SetPosition,
       code: code3,
       index: 3
     },
@@ -73,6 +73,7 @@ function CAD() {
           <ToggleButtons data={Data} />
         </div>
       </ControlElementUI>
+      <p className='mt-8 text-lg text-center text-red-500 '> Click on any of the Code Snippets to Center the Div😉 </p>
       <div className={`bg h-[20vh] my-4 gap-4 mt-12  ${AddClass()} relative`}
       >
         <div className={`${Postion === 3 ? "absolute inset-0 m-auto" : ""} w-20 h-10 p-10 text-center border-2 border-sky-500 `}></div>
