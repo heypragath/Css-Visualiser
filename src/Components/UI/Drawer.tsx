@@ -8,7 +8,7 @@ import { useState } from "react";
 import ListItemText from '@mui/material/ListItemText';
 import { Link } from 'react-router-dom';
 import Accordian from './Accordian';
-import { menu } from './Header';
+import { Units, menu } from './Header';
 
 
 
@@ -48,7 +48,8 @@ export default function MenuDrawer() {
                             </ListItem>
                         </Link>
                     ))}
-                              <Accordian menu={menu} />
+                              <Accordian title = "CSS Magic" menu={menu} />
+                              <Accordian title = "CSS Units" menu={Units} />
 
                 </List>
             </Drawer>

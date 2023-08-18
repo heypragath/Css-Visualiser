@@ -23,7 +23,7 @@ export default function ToggleButtons({ data }: { data: any }) {
             {
                 data?.map(data => {
                     return (
-                        <ToggleButton onFocus={() => data.setState(data.index)} onBlur={() => data.setState(0)} value={data.value} aria-label="left aligned">
+                        <ToggleButton onFocus={() => data.setUseState(data.index)} onBlur={() => data.blur === true ? data.setUseState(0): ""} value={data.value} aria-label="left aligned">
                             <Code width='100'>
                                 {data.code}
                             </Code>

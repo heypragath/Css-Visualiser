@@ -7,7 +7,9 @@
 
 /* Step -2: 12.50px → 12.80px */
 .step--2 {
-  font-size: clamp(0.78rem, calc(0.77rem + 0.03vw), 0.80rem)
+  font-size: clamp(0.78rem, calc(0.77rem + 0.03vw), 0.80rem);
+  color: white!important;
+
 }
 
 /* Step -1: 15.00px → 16.00px */
@@ -27,7 +29,7 @@
 
 /* Step 2: 25.92px → 31.25px */
 .step-2 {
-  font-size: clamp(1.62rem, calc(1.50rem + 0.58vw), 1.95rem)
+  font-size: clamp(1.62rem, calc(1.50rem + 0.58vw), 1.95rem);
 }
 
 /* Step 3: 31.10px → 39.06px  */

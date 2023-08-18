@@ -22,7 +22,7 @@ export const menu: MenuTypes[] = [
   },
 ]
 
-const Units = [
+export const Units = [
   {
     title: "Relative", 
     link: "/ultimate-units"
@@ -43,7 +43,7 @@ function Header() {
       <header className="flex px-2 py-4 max-md:justify-around md:p-4 md:pr-6 max-md:items-center md:flex-col header-width max-md:basis-32 grow gap-7">
         <h2 className="relative text-lg font-bold text-center text-white md:mt-16">
           <Link to="/">
-            Visualise Learn <span className="absolute text-[9px] -top-1 pb-14 right-0">v1.4</span> <br />
+            Visualise Learn <span className="absolute text-[9px] -top-1 pb-14 right-0 max-md:-top-3">v1.8</span> <br />
           </Link>
           <a target="blank" href="https://twitter.com/PragathRao">
             <span className="text-xs">(By Pragath)</span>

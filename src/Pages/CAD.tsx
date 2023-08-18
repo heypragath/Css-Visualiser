@@ -34,21 +34,24 @@ function CAD() {
       value: "left",
       setUseState: SetPosition,
       code: code1,
-      index: 1
+      index: 1,
+      blur: true
     },
     {
       title: "Grid",
       value: "center",
       setUseState: SetPosition,
       code: code2,
-      index: 2
+      index: 2,
+      blur: true
     },
     {
       title: "Inset",
       value: "right",
       setUseState: SetPosition,
       code: code3,
-      index: 3
+      index: 3,
+      blur: true
     },
   ]
 

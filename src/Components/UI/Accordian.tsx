@@ -12,7 +12,7 @@ export default function Accordian({ menu, title }) {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
-                sx={{ backgroundColor: "#211e70d9" }}
+                sx={{ backgroundColor: "#0e0d41d9" }}
             >
                 <p className='text-white'>{title}</p>
             </AccordionSummary>

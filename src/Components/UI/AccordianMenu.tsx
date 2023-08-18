@@ -6,8 +6,11 @@ import { Link } from 'react-router-dom'
 const style = {
     width: '100%',
     maxWidth: 200,
-    bgcolor: 'none',
-    color: "white"
+    color: "white",
+    gap: "0.25rem",
+    display:"flex",
+    flexDirection: "column",
+
 }
 
 function AccordianMenu({ menu }: { menu: MenuTypes[] }) {
@@ -17,10 +20,10 @@ function AccordianMenu({ menu }: { menu: MenuTypes[] }) {
             {menu?.map((menu) => {
                 return (
                     <Link to={menu.link}>
-                        <ListItem button>
+                        <ListItem disablePadding button>
                             <p>{menu.title}</p>
                         </ListItem>
-                        <Divider sx={{ background: "violet" }} />
+                        {/* <Divider sx={{ background: "violet" }} /> */}
                     </Link>
 
                 )
